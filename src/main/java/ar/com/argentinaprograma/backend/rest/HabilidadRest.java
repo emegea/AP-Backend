@@ -16,36 +16,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/habilidad")
-@CrossOrigin (origins = "https://portfolio-argentina-prog-e585f.web.app")
+@CrossOrigin (origins = "https://portfolio-argentina-prog-e585f.web.app, http://localhost:4200")
+@RequestMapping("/api/habilidad/")
 public class HabilidadRest {
 
     @Autowired
     private HabilidadController habilidadController;
 // VER TODOS
-    @GetMapping("/listar")
+    @GetMapping("listar")
     public List<Habilidad> listar(){
         return habilidadController.findAll();
     } 
 //GUARDAR
-@PostMapping("/nueva")
+@PostMapping("nueva")
     public Habilidad saveHabilidad(@RequestBody Habilidad habilidad){
         return habilidadController.save(habilidad);
     }
 //BUSCAR POR ID
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Optional<Habilidad> findById(@PathVariable("id") Long id){
         return habilidadController.findById(id);
     }
 //BORRAR POR ID
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("borrar/{id}")
     public String deleteById(@PathVariable("id") Long id){
         habilidadController.deleteById(id);
         return "Se eliminó la habilidad con ID:"+" "+id+" "+"corractamente.";
     }
 
 //EDITAR
-    @PutMapping("/editar/{id}")
+    @PutMapping("editar/{id}")
     public String editarHabilidad(@PathVariable("id") Long id, @RequestBody Habilidad habilidad) {
         Habilidad pnew=habilidadController.findById(id).orElse(null);
         //pregunto si no es nulo, entonces edito el existente

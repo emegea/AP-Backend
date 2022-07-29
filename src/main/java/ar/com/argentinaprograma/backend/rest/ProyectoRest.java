@@ -16,36 +16,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/proyecto")
-@CrossOrigin (origins = "https://portfolio-argentina-prog-e585f.web.app")
+@CrossOrigin (origins = "https://portfolio-argentina-prog-e585f.web.app, http://localhost:4200")
+@RequestMapping("/api/proyecto/")
 public class ProyectoRest {
 
     @Autowired
     private ProyectoController proyectoController;
 // VER TODOS
-    @GetMapping("/listar")
+    @GetMapping("listar")
     public List<Proyecto> listar(){
         return proyectoController.findAll();
     } 
 //GUARDAR
-@PostMapping("/nueva")
+@PostMapping("nueva")
     public Proyecto saveProyecto(@RequestBody Proyecto proyecto){
         return proyectoController.save(proyecto);
     }
 //BUSCAR POR ID
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Optional<Proyecto> findById(@PathVariable("id") Long id){
         return proyectoController.findById(id);
     }
 //BORRAR POR ID
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("borrar/{id}")
     public String deleteById(@PathVariable("id") Long id){
         proyectoController.deleteById(id);
         return "Se eliminó el proyecto con ID:"+" "+id+" "+"corractamente.";
     }
 
 //EDITAR
-    @PutMapping("/editar/{id}")
+    @PutMapping("editar/{id}")
     public String editarProyecto(@PathVariable("id") Long id, @RequestBody Proyecto proyecto) {
         Proyecto pnew=proyectoController.findById(id).orElse(null);
         //pregunto si no es nulo, entonces edito el existente

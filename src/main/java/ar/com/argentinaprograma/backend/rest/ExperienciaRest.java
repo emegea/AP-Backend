@@ -16,36 +16,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/experiencia")
-@CrossOrigin (origins = "https://portfolio-argentina-prog-e585f.web.app")
+@CrossOrigin (origins = "https://portfolio-argentina-prog-e585f.web.app, http://localhost:4200")
+@RequestMapping("/api/experiencia/")
 public class ExperienciaRest {
 
     @Autowired
     private ExperienciaController experienciaController;
 // VER TODOS
-    @GetMapping("/listar")
+    @GetMapping("listar")
     public List<Experiencia> listar(){
         return experienciaController.findAll();
     } 
 //GUARDAR
-@PostMapping("/nueva")
+@PostMapping("nueva")
     public Experiencia saveExperiencia(@RequestBody Experiencia experiencia){
         return experienciaController.save(experiencia);
     }
 //BUSCAR POR ID
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Optional<Experiencia> findById(@PathVariable("id") Long id){
         return experienciaController.findById(id);
     }
 //BORRAR POR ID
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("borrar/{id}")
     public String deleteById(@PathVariable("id") Long id){
         experienciaController.deleteById(id);
         return "Se eliminó la experiencia con ID:"+" "+id+" "+"corractamente.";
     }
 
 //EDITAR
-    @PutMapping("/editar/{id}")
+    @PutMapping("editar/{id}")
     public String editarExperiencia(@PathVariable("id") Long id, @RequestBody Experiencia experiencia) {
         Experiencia pnew=experienciaController.findById(id).orElse(null);
         //pregunto si no es nulo, entonces edito el existente
