@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin (origins = "https://ap-frontend-emegea.web.app/")
+@CrossOrigin (origins = "https://ap-frontend-emegea.web.app")
 @RequestMapping("/api/persona/")
 public class PersonaRest {
 
