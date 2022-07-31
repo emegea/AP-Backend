@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin (origins = "https://ap-frontend.netlify.app")
+// @CrossOrigin (origins = "http://localhost:4200")
+// @CrossOrigin (origins = "https://ap-frontend.netlify.app")
+@CrossOrigin (origins = "https://ap-frontend-emegea.web.app/")
 @RequestMapping("/api/educacion/")
 public class EducacionRest {
 
@@ -57,6 +59,7 @@ public class EducacionRest {
             pnew.setImg_diploma(educacion.getImg_diploma());
             pnew.setFecha_inicio(educacion.getFecha_inicio());
             pnew.setFecha_fin(educacion.getFecha_fin());
+            educacionController.save(pnew);
             return "Se editó la educacion con ID:"+" "+id+" "+"corractamente.";
         }
 
